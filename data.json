@@ -1,0 +1,55 @@
+{
+    "User": {
+        "bsonType": "object",
+        "required": ["name", "mail", "password", "profile_img", "school_name", "job", "old_age"],
+        "properties": {
+        "name": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "mail": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "password": {
+            "bsonType": "int",
+            "description": "must be an integer and is required"
+        },
+        "profile_img": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+            },
+            "school_name": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+            },
+        "job": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "old_age": {
+            "bsonType": "int",
+            "description": "must be an integer and is required"
+        }
+        }
+    },
+
+    "Message":{
+        "bsonType": "object",
+        "required": ["date", "message", "id_user"],
+        "properties": {
+        "date": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "message": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+        },
+        "id_user": {
+            "bsonType": "string",
+            "description": "must be a string and is required"
+            }
+        }
+    }
+}
