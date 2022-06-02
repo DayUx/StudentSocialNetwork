@@ -2,24 +2,33 @@ import React from 'react';
 
 export default function Register() {
     return (
-        <div className="register-div">
-            <form className="register-form">
+        <div className="login-register-div">
+            <div className="logo">study.io</div>
+            <form onSubmit={handleSubmit} className="login-register-form">
                 <h1>Register</h1>
-                <label htmlFor="pseudo">Pseudo</label>
-                <input required name="pseudo"/>
+                <input required placeholder="Email"  name="email" type="email"/>
+                <input required placeholder="Pseudo" name="pseudo"/>
 
-                <label htmlFor="email">Email</label>
-                <input required name="email" type="email"/>
+                <input required placeholder="First Name" name="first-name"/>
 
-                <label htmlFor="password">Password</label>
-                <input required name="password" type="password"/>
+                <input required placeholder="Second Name"  name="second-name"/>
 
-                <label htmlFor="confirm-password">Confirm password</label>
-                <input required name="confirm-password" type="password"/>
+                <input required placeholder="Password"  name="password" type="password"/>
 
-                <input value="Register" type="submit"/>
+                <input required placeholder="Confirm Password"  name="confirm-password" type="password"/>
+
+                <input className="btn" value="Register" type="submit"/>
             </form>
-
+            <div>
+                <h1>Already register ?</h1>
+                <button>Log In</button>
+            </div>
         </div>
     );
+}
+
+const handleSubmit = (event) => {
+    //Prevent page reload
+    event.preventDefault();
+    console.log("test")
 }
