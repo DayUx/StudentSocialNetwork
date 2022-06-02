@@ -55,7 +55,7 @@ class User {
             }
             }
         });
-        dbo.createCollection("Message", {
+        dbo.createCollection("School", {
             
         bsonType: "object",
         required: ["nom", "description", "users"],
