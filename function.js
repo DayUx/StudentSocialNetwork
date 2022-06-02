@@ -56,22 +56,52 @@ class User {
             }
         });
         dbo.createCollection("Message", {
-            bsonType: "object",
-            required: ["date", "message", "id_user"],
-            properties: {
-            date: {
-                bsonType: "string",
-                description: "must be a string and is required"
-            },
-            message: {
-                bsonType: "string",
-                description: "must be a string and is required"
-            },
-            id_user: {
-                bsonType: "string",
-                description: "must be a string and is required"
+            
+        bsonType: "object",
+        required: ["nom", "description", "users"],
+        properties: {
+        nom: {
+            bsonType: "string",
+            description: "must be a string and is required"
+        },
+        description: {
+            bsonType: "string",
+            description: "must be a string and is required"
+        },
+        ville:{
+            bsonType: "string",
+            description: "must be a string and is required"
+        },
+        messages:{
+            bsonType: "array",
+            items: {
+                bsonType: "object",
+                required: ["date", "message", "id_user"],
+                properties: {
+                date: {
+                    bsonType: "string",
+                    description: "must be a string and is required"
+                },
+                message: {
+                    bsonType: "string",
+                    description: "must be a string and is required"
+                },
+                id_user: {
+                    bsonType: "string",
+                    description: "must be a string and is required"
+                    }
+            }
+        }},
+        users: {
+            bsonType: "array",
+            items: {
+                user_id: {
+                    bsonType: "string",
+                    description: "must be a string and is required"
                 }
             }
+        }
+          }
         });
     }
 }

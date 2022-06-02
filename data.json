@@ -33,23 +33,52 @@
         }
         }
     },
-
-    "Message":{
+    "School":{
         "bsonType": "object",
-        "required": ["date", "message", "id_user"],
+        "required": ["nom", "description", "users"],
         "properties": {
-        "date": {
+        "nom": {
             "bsonType": "string",
             "description": "must be a string and is required"
         },
-        "message": {
+        "description": {
             "bsonType": "string",
             "description": "must be a string and is required"
         },
-        "id_user": {
+        "ville":{
             "bsonType": "string",
             "description": "must be a string and is required"
+        },
+        "messages":{
+            "bsonType": "array",
+            "items": {
+                "bsonType": "object",
+                "required": ["date", "message", "id_user"],
+                "properties": {
+                "date": {
+                    "bsonType": "string",
+                    "description": "must be a string and is required"
+                },
+                "message": {
+                    "bsonType": "string",
+                    "description": "must be a string and is required"
+                },
+                "id_user": {
+                    "bsonType": "string",
+                    "description": "must be a string and is required"
+                    }
+            }
+        }},
+        "users": {
+            "bsonType": "array",
+            "items": {
+                "user_id": {
+                    "bsonType": "string",
+                    "description": "must be a string and is required"
+                }
             }
         }
+          }
+        }
+    
     }
-}
