@@ -158,7 +158,6 @@ class User {
       }else {
         console.log("We can't insert in table User cause the data haven't the same size.");
       }
-      
     }
     /**
      * Allows to insert ONE school
