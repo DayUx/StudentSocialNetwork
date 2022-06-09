@@ -1,6 +1,5 @@
 var UserProfile = (function() {
     var full_name = "";
-    var
 
     var getName = function() {
         return full_name;    // Or pull this from cookie/localStorage

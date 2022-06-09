@@ -5,12 +5,9 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cookieSession = require('cookie-session');
 
-const home = require('./routes/home');
-const index = require('./routes/index');
-const login = require('./routes/login');
-const profile = require('./routes/profile')
-const register = require('./routes/register');
-const upload = require('./routes/upload');
+const login = require('./api/login');
+const register = require('./api/register');
+
 
 const app = express();
 
@@ -33,7 +30,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/home', home);
-app.use('/', index);
 // app.use('/login', login);
 // app.use('/profile', profile);
 // app.use('/register', register);
