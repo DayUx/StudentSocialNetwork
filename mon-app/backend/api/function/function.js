@@ -203,3 +203,5 @@ class User {
       });
     }
 }
+
+module.exports = router;
