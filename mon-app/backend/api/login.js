@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const social_network = require('social_network').user_dao;
 const asyncMiddleware = require("./functions").asyncMiddleware;
 const htmlescape = require("./functions").htmlescape;
-const fonction = require('function');
+const login = require('./controller/loginController');
+
 
 router.get('/', asyncMiddleware(async (req, res, next) => {
     if (req.session.email) {
@@ -13,14 +13,19 @@ router.get('/', asyncMiddleware(async (req, res, next) => {
 }));
 
 router.post('/', asyncMiddleware(async (req, res, next) => {
+    console.log(req.body);
+    console.log(login)
     if (req.body.email && req.body.password) {
-        const t = fonction.verifyExistingUser(req.body.email, req.body.password);
+        const t = login.verifyExistingUser(req.body.email, req.body.password);
         if (t != null){
-            res.append(t);
+            res.send(t);
         }
     
+    } else {
+        console.log("error");
+        res.send("error");
     }
-    res.render('login', {error: true, fromregister: false}); //Retour sur login avec une option indiquant une erreur
+    //res.render('login', {error: true, fromregister: false}); //Retour sur login avec une option indiquant une erreur
 }));
 
 //Déconnecte l'utilisateur et le redirige vers l'index.
