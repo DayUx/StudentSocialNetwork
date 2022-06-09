@@ -1,84 +1,127 @@
 {
-    "User": {
-        "bsonType": "object",
-        "required": ["name", "mail", "password", "profile_img", "school_name", "job", "old_age"],
-        "properties": {
-        "name": {
-            "bsonType": "string",
-            "description": "must be a string and is required"
-        },
-        "mail": {
-            "bsonType": "string",
-            "description": "must be a string and is required"
-        },
-        "password": {
-            "bsonType": "string",
-            "description": "must be an integer and is required"
-        },
-        "profile_img": {
-            "bsonType": "string",
-            "description": "must be a string and is required"
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'nom',
+      'description',
+      'ville',
+      'messages',
+      'users'
+    ],
+    properties: {
+      nom: {
+        bsonType: 'string',
+        description: 'must be a string and is required'
+      },
+      description: {
+        bsonType: 'string',
+        description: 'must be a string and is required'
+      },
+      ville: {
+        bsonType: 'string',
+        description: 'must be a string and is required'
+      },
+      messages: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'object',
+          required: [
+            'date',
+            'message',
+            'user_id'
+          ],
+          properties: {
+            date: {
+              bsonType: 'string',
+              description: 'must be a string and is required'
             },
-            "school_name": {
-            "bsonType": "string",
-            "description": "must be a string and is required"
+            message: {
+              bsonType: 'string',
+              description: 'must be a string and is required'
             },
-        "job": {
-            "bsonType": "string",
-            "description": "must be a string and is required"
-        },
-        "old_age": {
-            "bsonType": "int",
-            "description": "must be an integer and is required"
-        }
-        }
-    },
-    "School":{
-        "bsonType": "object",
-        "required": ["nom", "description", "ville","messages","users"],
-        "properties": {
-        "nom": {
-            "bsonType": "string",
-            "description": "must be a string and is required"
-        },
-        "description": {
-            "bsonType": "string",
-            "description": "must be a string and is required"
-        },
-        "ville":{
-            "bsonType": "string",
-            "description": "must be a string and is required"
-        },
-        "messages":{
-            "bsonType": "array",
-            "items": {
-                "bsonType": "object",
-                "required": ["date", "message", "id_user"],
-                "properties": {
-                "date": {
-                    "bsonType": "string",
-                    "description": "must be a string and is required"
-                },
-                "message": {
-                    "bsonType": "string",
-                    "description": "must be a string and is required"
-                },
-                "id_user": {
-                    "bsonType": "string",
-                    "description": "must be a string and is required"
-                    }
+            user_id: {
+              bsonType: 'string',
+              description: 'must be a string and is required'
             }
-        }},
-        "users": {
-            "bsonType": "array",
-            "items": {
-                "user_id": {
-                    "bsonType": "string",
-                    "description": "must be a string and is required"
-                }
-            }
-        }
           }
         }
-    
+      },
+      users: {
+        bsonType: 'array',
+        items: {
+          bsonType: 'object',
+          required: [
+            'user_id'
+          ],
+          properties: {
+            user_id: {
+              bsonType: 'string',
+              description: 'must be a string and is required'
+            }
+          }
+        }
+      }
     }
+  }
+}
+
+
+
+,
+
+
+
+{
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'name',
+      'mail',
+      'password',
+      'profile_img',
+      'school_name',
+      'job',
+      'old_age'
+    ],
+    properties: {
+      name: {
+        bsonType: 'string',
+        description: 'must be a string and is required'
+      },
+      mail: {
+        bsonType: 'string',
+        description: 'must be a string and is required'
+      },
+      password: {
+        bsonType: 'string',
+        description: 'must be an integer and is required'
+      },
+      profile_img: {
+        bsonType: 'string',
+        description: 'must be a string and is required'
+      },
+      school_name: {
+        bsonType: 'string',
+        description: 'must be a string and is required'
+      },
+      job: {
+        bsonType: 'string',
+        description: 'must be a string and is required'
+      },
+      old_age: {
+        bsonType: 'int',
+        description: 'must be an integer and is required'
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
