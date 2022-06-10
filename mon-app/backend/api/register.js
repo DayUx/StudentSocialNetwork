@@ -16,7 +16,6 @@ router.post('/', asyncMiddleware(async (req, res, next) => {
             fonction.insertUsers(name, mail, profile_img, school, job, old_age);
             res.append(fonction.verifyExistingUser(req.body.email, req.body.password));
         }
-    
     }
     res.render('login', {error: true, fromregister: false}); //Retour sur login avec une option indiquant une erreur
 }));

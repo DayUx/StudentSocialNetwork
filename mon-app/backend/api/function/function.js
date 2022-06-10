@@ -158,6 +158,14 @@ class User {
         });
     }
 
+    
+
+    /**
+     * it allows to verify if the user with the mail/mdp still exists
+     * @param {*} mail the mail of the user
+     * @param {*} mdp the password of the user
+     * @returns the attributs of the user in the db
+     */
     verifyExistingUser(mail, mdp) {
         var tmp = null;
         dbo.collection("User").findOne({name, profile_img, school_name, job, old_age}, {
@@ -174,6 +182,10 @@ class User {
         return tmp;
     }
 
+    /**
+     * it allows to have all data of the customers collection
+     * @return all data of the collection
+     */
     listAll() {
         dbo.collection("customers").find({}).toArray(function (err, result) {
             if (err) throw err;
