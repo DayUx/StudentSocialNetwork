@@ -9,6 +9,7 @@ export default function Register() {
     });
     const changeHandler = (e) => {
         const {name, value} = e.target;
+        console.log(name, value);
         setFields((fields) => ({
             ...fields, [name]: value
         }));
@@ -39,9 +40,9 @@ export default function Register() {
                 <input required placeholder="Email"  name="email" type="email" onChange={changeHandler}  value={fields.email}/>
                 <input required placeholder="Pseudo" name="pseudo" onChange={changeHandler}  value={fields.pseudo}/>
 
-                <input required placeholder="First Name" name="first-name" onChange={changeHandler}  value={fields.first_name}/>
+                {/*<input required placeholder="First Name" name="first-name" onChange={changeHandler}  value={fields.first_name}/>*/}
 
-                <input required placeholder="Second Name"  name="second-name" onChange={changeHandler}  value={fields.second_name}/>
+                {/*<input required placeholder="Second Name"  name="second-name" onChange={changeHandler}  value={fields.second_name}/>*/}
 
                 <input required placeholder="Password"  name="password" type="password" onChange={changeHandler}  value={fields.password}/>
 

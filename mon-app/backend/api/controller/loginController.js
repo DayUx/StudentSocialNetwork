@@ -10,13 +10,12 @@ function verifyExistingUser(mail,mdp)  {
         var dbo = db.db("SocialNetwork");
 
         var tmp = null;
-        dbo.collection("User").findOne({mail:mail, password:mdp}, {
-            password: 0
+        dbo.collection("User").findOne({mail:mail, password:mdp}, {projection:{
+            "password": 0,}
         }, function (err, result) {
             if (err) throw err;
             console.log(result);
-            console.log(result.name);
-
+            //console.log(result.name);
 
             tmp = result;
             // if (result.name != null) {

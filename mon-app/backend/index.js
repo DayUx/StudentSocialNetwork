@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/login', login);
-//app.use('/register', register);
+app.use('/register', register);
 app.use('/', index);
 
 mongoose.connect(process.env.DB_URI, {

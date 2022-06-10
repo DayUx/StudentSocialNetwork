@@ -1,24 +1,28 @@
-function registerUser(name, mail, password, profile_img, school_name, job, old_age) {
-    var myobj = []
-    if (name.length == mail.length == profile_img.length == school_name.length == job.length == old_age.length && job.length != 0) {
-        for (i = 0; i < mail.length; i++) {
-            var data = {
-                name: name[i],
-                mail: mail[i],
-                password: password[i],
-                profile_img: profile_img[i],
-                school_name: school_name[i],
-                job: job[i],
-                old_age: old_age[i]
-            }
-            myobj.push(data);
-        }
-        dbo.collection("User").insertMany(myobj, function (err, res) {
+
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+const yargs = require('yargs/yargs')
+const {hideBin} = require('yargs/helpers')
+const argv = yargs(hideBin(process.argv)).argv
+
+
+function registerUser(first_name, second_name, mail, password) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("SocialNetwork");
+        dbo.collection("User").insert({
+            first_name: first_name,
+            second_name: second_name,
+            mail: mail,
+            password: password,
+        }, function (err, res) {
             if (err) throw err;
             console.log("1 document inserted");
             db.close();
         });
-    } else {
-        console.log("We can't insert in table User cause the data haven't the same size.");
-    }
+
+    });
 }
+
+
+module.exports = {registerUser: registerUser};
