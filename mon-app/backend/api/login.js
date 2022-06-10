@@ -13,14 +13,14 @@ router.get('/', asyncMiddleware(async (req, res, next) => {
 }));
 
 router.post('/', asyncMiddleware(async (req, res, next) => {
-    console.log(req.body);
-    console.log(login)
+    //console.log(req.body);
+    //console.log(login)
     if (req.body.email && req.body.password) {
         const t = login.verifyExistingUser(req.body.email, req.body.password);
         if (t != null){
             res.send(t);
         }
-    
+
     } else {
         console.log("error");
         res.send("error");

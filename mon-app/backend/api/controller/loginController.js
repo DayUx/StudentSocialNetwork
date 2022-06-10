@@ -10,15 +10,18 @@ function verifyExistingUser(mail,mdp)  {
         var dbo = db.db("SocialNetwork");
 
         var tmp = null;
-        dbo.collection("User").findOne({name, profile_img, school_name, job, old_age}, {
-            mail: mail,
-            password: mdp
+        dbo.collection("User").findOne({mail:mail, password:mdp}, {
+            password: 0
         }, function (err, result) {
             if (err) throw err;
+            console.log(result);
             console.log(result.name);
-            if (result.name != null) {
-                return [name, profile_img, school_name, job, old_age];
-            }
+
+
+            tmp = result;
+            // if (result.name != null) {
+            //     return [name, profile_img, school_name, job, old_age];
+            // }
             return tmp;
         });
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import {useState} from "@types/react";
+import React, { useState } from 'react';
+
 
 export default function Register() {
 
@@ -57,8 +57,3 @@ export default function Register() {
     );
 }
 
-const handleSubmit = (event) => {
-    //Prevent page reload
-    event.preventDefault();
-    console.log("test")
-}
