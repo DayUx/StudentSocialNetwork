@@ -18,7 +18,10 @@ router.post('/', asyncMiddleware(async (req, res, next) => {
     if (req.body.email && req.body.password) {
         const t = login.verifyExistingUser(req.body.email, req.body.password);
         if (t != null){
-            res.send(t);
+            console.log(t);
+
+            res.status(200).send(t);
+            res.end();
         }
 
     } else {

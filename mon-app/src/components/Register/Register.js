@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import {registerRoute} from '../../utils/APIRoutes';
+import {useNavigate} from 'react-router-dom';
 
 
 export default function Register() {
-
-
+    const navigate = useNavigate();
     const [fields, setFields] = useState({ // <-- create field state
         email: '', password: '', second_name: '', first_name: '', pseudo: '',
     });
@@ -17,7 +18,7 @@ export default function Register() {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        fetch('http://localhost:4000/register', {
+        fetch(registerRoute, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -25,9 +26,13 @@ export default function Register() {
             body: JSON.stringify(fields)
         }).then(res => {
             console.log(res);
-            if (res.status === 200) {
-                console.log("ok");
+            if (res.status === true) {
+                localStorage.setItem('user'.JSON.stringify(fields));
+                navigate('/');
+            } else {
+                console.log("error");
             }
+
         })
     };
 
@@ -37,16 +42,18 @@ export default function Register() {
             <div className="logo">study.io</div>
             <form onSubmit={submitHandler} className="login-register-form">
                 <h1>Register</h1>
-                <input required placeholder="Email"  name="email" type="email" onChange={changeHandler}  value={fields.email}/>
-                <input required placeholder="Pseudo" name="pseudo" onChange={changeHandler}  value={fields.pseudo}/>
+                <input required placeholder="Email" name="email" type="email" onChange={changeHandler}
+                       value={fields.email}/>
+                <input required placeholder="Pseudo" name="pseudo" onChange={changeHandler} value={fields.pseudo}/>
 
-                {/*<input required placeholder="First Name" name="first-name" onChange={changeHandler}  value={fields.first_name}/>*/}
+                <input required placeholder="First Name" name="first_name" onChange={changeHandler}  value={fields.first_name}/>
 
-                {/*<input required placeholder="Second Name"  name="second-name" onChange={changeHandler}  value={fields.second_name}/>*/}
+                <input required placeholder="Second Name"  name="second_name" onChange={changeHandler}  value={fields.second_name}/>
 
-                <input required placeholder="Password"  name="password" type="password" onChange={changeHandler}  value={fields.password}/>
+                <input required placeholder="Password" name="password" type="password" onChange={changeHandler}
+                       value={fields.password}/>
 
-                <input required placeholder="Confirm Password"  name="confirm-password" type="password"/>
+                <input required placeholder="Confirm Password" name="confirm-password" type="password"/>
 
                 <input className="btn" value="Register" type="submit"/>
             </form>

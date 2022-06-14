@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const login = require('./api/login');
 const register = require('./api/register');
 const index = require('./api/index');
+const userRoutes = require('./api/routes/userRoutes');
 
 const app = express();
 require('dotenv').config();
@@ -11,9 +12,11 @@ require('dotenv').config();
 app.use(cors());
 app.use(express.json());
 
-app.use('/login', login);
-app.use('/register', register);
-app.use('/', index);
+
+
+
+
+app.use('/', userRoutes);
 
 mongoose.connect(process.env.DB_URI, {
     useNewUrlParser: true,

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {loginRoute} from "../../utils/APIRoutes";
 
 export default function LogIn() {
 
@@ -15,15 +16,16 @@ export default function LogIn() {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        fetch('http://localhost:4000/login', {
+        console.log(fields);
+        fetch(loginRoute, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(fields)
-        }).then(res => {
+        }).then(function (res) {
             //console.log(res);
-
+            console.log(res);
             if (res.status === 200) {
                 console.log("ok");
             }
