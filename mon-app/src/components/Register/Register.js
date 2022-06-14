@@ -32,7 +32,7 @@ export default function Register() {
             ).then(res => {
                 console.log(res);
                 if (res.data.status === true) {
-                    localStorage.setItem('user',res.data.user);
+                    localStorage.setItem('user',JSON.stringify(res.data.user));
                     navigate('/');
                 } else {
                     console.log(res.data);
