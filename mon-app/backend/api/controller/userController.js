@@ -8,7 +8,7 @@ module.exports.register = async (req, res, next) => {
 
     try {
         const {first_name, second_name, email, password} = req.body;
-        const mailCheck = await Users.findOne({mail: mail});
+        const mailCheck = await Users.findOne({email: email});
         if (mailCheck) {
             return res.json({
                 message: "Mail already used",
@@ -21,7 +21,7 @@ module.exports.register = async (req, res, next) => {
         const user = await Users.create({
             first_name: first_name,
             second_name: second_name,
-            mail: mail,
+            email: email,
             password: hashedPassword,
         });
         delete user.password;

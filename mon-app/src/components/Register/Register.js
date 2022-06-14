@@ -24,16 +24,20 @@ export default function Register() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(fields)
-        }).then(res => {
-            console.log(res);
-            if (res.status === true) {
-                localStorage.setItem('user'.JSON.stringify(fields));
-                navigate('/');
-            } else {
-                console.log("error");
-            }
-
-        })
+        }).then(response =>
+            response.json().then(data => ({
+                    data: data,
+                    status: response.status
+                })
+            ).then(res => {
+                console.log(res);
+                if (res.data.status === true) {
+                    localStorage.setItem('user',res.data.user);
+                    navigate('/');
+                } else {
+                    console.log(res.data);
+                }
+            }))
     };
 
 
@@ -46,9 +50,11 @@ export default function Register() {
                        value={fields.email}/>
                 <input required placeholder="Pseudo" name="pseudo" onChange={changeHandler} value={fields.pseudo}/>
 
-                <input required placeholder="First Name" name="first_name" onChange={changeHandler}  value={fields.first_name}/>
+                <input required placeholder="First Name" name="first_name" onChange={changeHandler}
+                       value={fields.first_name}/>
 
-                <input required placeholder="Second Name"  name="second_name" onChange={changeHandler}  value={fields.second_name}/>
+                <input required placeholder="Second Name" name="second_name" onChange={changeHandler}
+                       value={fields.second_name}/>
 
                 <input required placeholder="Password" name="password" type="password" onChange={changeHandler}
                        value={fields.password}/>
