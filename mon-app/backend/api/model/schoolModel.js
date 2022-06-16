@@ -15,6 +15,10 @@ const schoolSchema = new mongoose.Schema({
         type: 'string',
         required: true
       },
+      image: {
+        type: 'string',
+        required: true
+      },
       ville: {
         type: 'string',
         required: true
