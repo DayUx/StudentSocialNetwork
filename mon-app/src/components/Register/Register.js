@@ -1,10 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState,useContext, useEffect} from 'react';
 import {registerRoute} from '../../utils/APIRoutes';
 import {useNavigate} from 'react-router-dom';
+import {AuthContext} from "../AuthProvider";
 
 
 export default function Register() {
     const navigate = useNavigate();
+    const {user} = useContext(AuthContext);
+
+    useEffect(() => {
+        if (user){
+
+            navigate('/');
+
+        }
+    }, []);
+
+
+
+
+
     const [fields, setFields] = useState({ // <-- create field state
         email: '', password: '', second_name: '', first_name: '', pseudo: '',
     });

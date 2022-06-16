@@ -1,20 +1,24 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import Parser from 'html-react-parser';
-
+import {useNavigate} from 'react-router-dom';
+import {AuthContext} from "../AuthProvider";
+import Dashboard from "../Dashboard/Dashboard";
 
 
 export default function Home() {
+    const navigate = useNavigate();
 
-    const user = JSON.parse(localStorage.getItem('user'));
+    const {user} = useContext(AuthContext);
 
-    return (
+    useEffect(() => {
+        if (!user){
 
+            navigate('/login');
 
-        <div>
-            {Parser(user.email)}
-        </div>
+        }
+    }, []);
 
-
-
-    );
+    return user ? (
+        <Dashboard/>
+    ) : null;
 }
