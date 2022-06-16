@@ -26,6 +26,10 @@ export default function LogIn() {
         }));
     };
 
+    const redirection=()=> {
+        navigate('/register')
+      }
+
     const submitHandler = (e) => {
         e.preventDefault();
         console.log(fields);
@@ -64,7 +68,7 @@ export default function LogIn() {
         </form>
         <div>
             <h1>New here ?</h1>
-            <button> Register</button>
+            <button onClick={redirection}> Register</button>
         </div>
     </div>);
 }

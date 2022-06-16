@@ -31,6 +31,10 @@ export default function Register() {
         }));
     };
 
+    const redirection=()=> {
+        navigate('/login')
+      }
+
     const submitHandler = (e) => {
         e.preventDefault();
         fetch(registerRoute, {
@@ -80,7 +84,7 @@ export default function Register() {
             </form>
             <div>
                 <h1>Already register ?</h1>
-                <button>Log In</button>
+                <button onClick={redirection}>Log In</button>
             </div>
         </div>
     );
