@@ -7,41 +7,41 @@ const argv = yargs(hideBin(process.argv)).argv
 const mongoose = require('mongoose');
 
 const schoolSchema = new mongoose.Schema({
-    first_name: {
-        type: String,
-           required: true,
-           minlength: 2,
-           maxlength: 50,
-           trim: true,
-
-  },
-   second_name: {
-       type: String,
-           required: true,
-           minlength: 2,
-           maxlength: 50,
-           trim: true,
-
-   },
-   email: {
-       type: String,
-           required: true,
-           minlength: 5,
-           maxlength: 50,
-       unique: true,
-       trim: true,
-   },
-   password: {
-       type: String,
-           required: true,
-           minlength: 10,
-           maxlength: 150,
-           trim: true,
-   },
-   profile_img: {
-       type: String,
-           default: "",
-   },
+    nom: {
+        type: 'string',
+        required: true
+      },
+      description: {
+        type: 'string',
+        required: true
+      },
+      ville: {
+        type: 'string',
+        required: true
+      },
+      messages: [{
+          
+            date: {
+                type: 'string',
+                required: true
+            },
+            message: {
+                type: 'string',
+                required: true
+            },
+            user_id: {
+                type: 'string',
+                required: true
+            }
+          
+      }],
+      users: [{
+        user_id: {
+            type: 'string',
+            required: true
+          }
+        }]
+    
 });
 
 
