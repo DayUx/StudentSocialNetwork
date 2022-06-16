@@ -90,6 +90,7 @@
     transition: 0.1s;
 }
 
+
 .btn:hover,button:hover{
     transform:scale(1.05);
 }
@@ -142,4 +143,69 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+
+.dashboard{
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh);
+    width:100%;
+    padding: 10px;
+    box-sizing: border-box;
+    background-image: url("../public/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    gap: 20px;
+}
+
+
+.dashboard nav{
+    height: calc(100% - 10px);
+    width: 80px;
+    background: linear-gradient(66deg, rgba(145, 180, 192, 0.3), rgba(151, 232, 224, 0.3));
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-top: 10px;
+    //border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 10px;
+}
+.dashboard .nav-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    flex: 1;
+    box-sizing: border-box;
+}
+.dashboard .nav-wrapper button {
+    background: white;
+    color: var(--main-blue);
+    border: none;
+    padding: 5px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 10px;
+    transition: 0.1s;
+    height: 60px;
+    width: 60px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 10px;
+
+}
+
+.dashboard .school_page{
+    background: linear-gradient(66deg, rgba(145, 180, 192, 0.3), rgba(151, 232, 224, 0.3));
+    backdrop-filter: blur(20px);
+    flex: 1;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 10px;
+
+    border-radius: 10px;
 }

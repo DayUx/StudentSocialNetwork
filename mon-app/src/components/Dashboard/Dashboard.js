@@ -12,15 +12,17 @@ export default function Dashboard() {
 
 
     return(
-
-        <div>
+        <div className="dashboard">
             <nav>
                 <div className="nav-wrapper">
                     {schools_buttons}
                 </div>
             </nav>
-            <div>
-
+            <div className="school_page">
+                <div className="school_page_header">
+                </div>
+                <div className="school_page_body">
+                </div>
             </div>
         </div>
     );
