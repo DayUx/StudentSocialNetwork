@@ -6,15 +6,13 @@ import Dashboard from "../Dashboard/Dashboard";
 
 
 export default function Home() {
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
     const {user} = useContext(AuthContext);
 
     useEffect(() => {
         if (!user){
-
             navigate('/login');
-
         }
     }, []);
 

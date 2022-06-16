@@ -1,9 +1,13 @@
 
 :root {
-    --main-blue: #227C9D;
-    --secondary-blue: #17C3B2;
+    --main-blue: #2684ff;
+    --secondary-blue: #0254CFFF;
+    --dark-blue: #253858;
     --main-yellow: #FFCB77;
-    --main-white: #FEF9EF;
+    --main-white: #fff;
+    --secondary-white: #fafcfe;
+    --tertiary-white: #fcfbfc;
+    --main-grey: #acb9ca;
     --main-red: #FE6D73;
 }
 
@@ -40,7 +44,7 @@
     color: #61dafb;
 }
 
-.login-register-div .logo{
+.login-register-div .logo {
     position: absolute;
     top: 0;
     left: 0;
@@ -52,11 +56,11 @@
 .login-register-div {
     display: flex;
     align-content: center;
-    min-height:100vh;
+    min-height: 100vh;
     width: 100%;
 }
 
-.login-register-div div{
+.login-register-div div {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -77,10 +81,11 @@
     flex: 1;
 }
 
-.login-register-form .btn{
+.login-register-form .btn {
     background: var(--secondary-blue);
 }
-.btn,button{
+
+.btn, button {
     padding: 5px 20px;
     border-radius: 50px;
     border: none;
@@ -91,18 +96,16 @@
 }
 
 
-.btn:hover,button:hover{
-    transform:scale(1.05);
+.btn:hover, button:hover {
+    transform: scale(1.05);
 }
 
 
-
-
-
-.login-register-div div button{
+.login-register-div div button {
     background: white;
     color: var(--secondary-blue);
 }
+
 .login-register-form label {
     text-align: left;
     height: 10px;
@@ -146,38 +149,122 @@
 }
 
 
-.dashboard{
+.dashboard {
     display: flex;
     flex-direction: row;
     height: calc(100vh);
-    width:100%;
+    width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    background-image: url("../public/background.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: var(--secondary-white);
     gap: 20px;
 }
 
+.dashboard .addSchoolMenu .existing-schools{
+    width:100%
+}
 
-.dashboard nav{
+.dashboard .addSchoolMenu {
+    visibility: hidden;
+    transition: 0.2s;
+    background: var(--secondary-white);
+    padding: 30px 0;
+    border-radius: 10px;
+    position: fixed;
+    min-width: 500px;
+    z-index: 101;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+}
+
+
+.dashboard .visible.addSchoolMenu {
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+
+}
+
+
+.dashboard nav {
     height: calc(100% - 10px);
     width: 80px;
-    background: linear-gradient(66deg, rgba(145, 180, 192, 0.3), rgba(151, 232, 224, 0.3));
-    backdrop-filter: blur(20px);
+    background: var(--main-white);
     border-radius: 10px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     gap: 10px;
     padding-top: 10px;
-    //border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 10px;
 }
-.dashboard .nav-wrapper{
+
+
+
+.dashboard .school-button{
+    background: var(--main-white);
+    border: none;
+    padding: 0 10px;
+    cursor: pointer;
+    color: var(--main-grey);
+    font-size: 10px;
+    transition: 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 10px;
+}
+
+
+.dashboard .school-button:hover{
+    background: var(--tertiary-white);
+    color: var(--main-blue);
+}
+
+.dashboard .create-school button{
+    background : var(--main-blue);
+}
+
+
+.dashboard .school-button .school-button-icon{
+    width:20px;
+    height:20px;
+    background-size:cover;
+    background-position:center;
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 10px;
+
+}
+
+
+
+.dashboard .overlay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    visibility: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.dashboard .overlay.visible{
+    visibility: visible;
+    opacity:1;
+}
+
+
+.dashboard .nav-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -186,24 +273,32 @@
     flex: 1;
     box-sizing: border-box;
 }
+
 .dashboard .nav-wrapper button {
-    background: white;
-    color: var(--main-blue);
     border: none;
     padding: 5px;
     border-radius: 50px;
     cursor: pointer;
-    font-size: 10px;
+    font-size: 30px;
     transition: 0.1s;
     height: 60px;
     width: 60px;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 10px;
-
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: var(--main-grey);
+}
+.dashboard .nav-wrapper button:hover {
+    color:var(--main-blue);
 }
 
-.dashboard .school_page{
-    background: linear-gradient(66deg, rgba(145, 180, 192, 0.3), rgba(151, 232, 224, 0.3));
-    backdrop-filter: blur(20px);
+.dashboard nav button{
+    background: var(--main-white);
+}
+
+.dashboard .school_page {
+    background: var(--main-white);
     flex: 1;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 10px;
 

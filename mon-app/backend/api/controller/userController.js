@@ -23,6 +23,7 @@ module.exports.register = async (req, res, next) => {
             password: hashedPassword,
         });
         delete user.password;
+
         return res.json({status : true, user: user});
     }catch (e){
         next(e);

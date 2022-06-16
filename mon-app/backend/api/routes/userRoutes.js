@@ -1,8 +1,9 @@
 const {register,login} = require("../controller/userController");
-const {images, messages} = require("../controller/schoolController")
+const {images, messages, getSchools} = require("../controller/schoolController")
 const router = require('express').Router();
 router.post("/register", register);
 router.post("/login",login);
-router.post("/getSchools", images)
+router.post("/getSchoolsOfUser", images)
 router.post("/getMessages", messages)
+router.post("/getSchools", getSchools)
 module.exports = router;
