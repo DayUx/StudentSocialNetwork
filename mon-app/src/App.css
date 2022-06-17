@@ -7,6 +7,7 @@
     --main-white: #fff;
     --secondary-white: #fafcfe;
     --tertiary-white: #fcfbfc;
+    --secondary-grey: #d7d7d7;
     --main-grey: #acb9ca;
     --main-red: #FE6D73;
 }
@@ -93,6 +94,8 @@
     color: white;
     font-size: 10px;
     transition: 0.1s;
+    background: var(--main-blue);
+
 }
 
 
@@ -164,7 +167,7 @@
     width:100%
 }
 
-.dashboard .addSchoolMenu {
+.dashboard .addSchoolMenu, .dashboard .create-school-menu {
     visibility: hidden;
     transition: 0.2s;
     background: var(--secondary-white);
@@ -181,14 +184,105 @@
     justify-content: center;
     align-items: center;
     gap:20px;
+    color: var(--dark-blue);
 }
 
 
-.dashboard .visible.addSchoolMenu {
+
+.dashboard .visible.addSchoolMenu,.dashboard .create-school-menu.visible {
     visibility: visible;
     transform: translate(-50%, -50%) scale(1);
 
 }
+
+
+
+.dashboard .create-school-menu .preview{
+    width: 100px;
+    overflow: hidden;
+    object-fit: cover;
+    height: 100px;
+}
+
+.dashboard .create-school-menu input[type="file"]{
+    background: transparent;
+    border-radius: 0px;
+    position: absolute;
+    color: transparent;
+    border: none;
+    text-indent: -999em;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.dashboard .create-school-menu input[type="file"]::before{
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-indent: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    opacity: 1;
+    content: "Upload\AIcon";
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    transition: 0.2s;
+}
+
+.dashboard .create-school-menu input[type="file"]:hover::before{
+    background: rgba(0, 0, 0, 0.2);
+}
+
+
+.dashboard .create-school-menu .preview-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    border-radius: 1000px;
+    background: linear-gradient(30deg, var(--main-blue), var(--secondary-blue));
+}
+
+
+.dashboard .create-school-menu form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.dashboard .create-school-menu input{
+    border-radius: 50px;
+    border: none;
+    background: var(--secondary-grey);
+    padding: 5px 15px;
+    font-size: 17px;
+    outline: none;
+    color: var(--dark-blue);
+    width: calc(100% - 100px);
+}
+
+
+
+
+
 
 
 .dashboard nav {
@@ -301,6 +395,5 @@
     background: var(--main-white);
     flex: 1;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 10px;
-
     border-radius: 10px;
 }
