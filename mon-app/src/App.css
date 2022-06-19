@@ -8,10 +8,10 @@
     --secondary-white: #fafcfe;
     --tertiary-white: #fcfbfc;
     --secondary-grey: #d7d7d7;
+    --quaternary-white: #eaeaea;
     --main-grey: #acb9ca;
     --main-red: #FE6D73;
 }
-
 
 
 .App {
@@ -163,11 +163,100 @@
     gap: 20px;
 }
 
-.dashboard .addSchoolMenu .existing-schools{
-    width:100%
+.dashboard .addSchoolMenu .existing-schools {
+    width: 100%;
+
 }
 
-.dashboard .addSchoolMenu, .dashboard .create-school-menu {
+.dashboard .addSchoolMenu .existing-schools-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 200px;
+    background: var(--quaternary-white);
+    color: var(--main-grey);
+    overflow-y: scroll;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard .addSchoolMenu .existing-schools-list::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.dashboard .addSchoolMenu .existing-schools-list::-webkit-scrollbar-thumb {
+    background: red;
+    width: 5px;
+}
+
+.dashboard .addSchoolMenu .existing-schools-filter {
+    border-radius: 50px;
+    border: none;
+    background: var(--quaternary-white);
+    padding: 5px 15px;
+    font-size: 17px;
+    outline: none;
+    color: var(--dark-blue);
+    width: calc(100% - 100px);
+    margin-bottom: 10px;
+}
+
+.dashboard .school-page-header .school-page-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.dashboard .school-page-header h1, .dashboard .school-page-header p {
+    color: var(--main-blue);
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+
+}
+
+.dashboard .school-page-header button {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    border: none;
+    background:transparent;
+    color: var(--main-grey);
+    font-size: 30px;
+    transform: inherit;
+}
+.dashboard .school-page-header button:hover {
+    color: var(--main-blue);
+    background: var(--quaternary-white);
+}
+
+.dashboard .school-page {
+    flex: 1;
+    height: 100%;
+}
+
+
+.dashboard .school-page-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background: var(--main-white);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    flex: 1;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+
+.dashboard .addSchoolMenu, .dashboard .create-school-menu{
     visibility: hidden;
     transition: 0.2s;
     background: var(--secondary-white);
@@ -183,28 +272,47 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap:20px;
+    gap: 20px;
     color: var(--dark-blue);
+}
+.dashboard .school-menu {
+    visibility: hidden;
+    transition: 0.2s;
+    position: fixed;
+
+    z-index: 101;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.dashboard .school-menu button{
+    height: 80px;
+    width: 80px;
+    font-size: 30px;
 }
 
 
-
-.dashboard .visible.addSchoolMenu,.dashboard .create-school-menu.visible {
+.dashboard .visible.addSchoolMenu, .dashboard .create-school-menu.visible, .dashboard .school-menu.visible {
     visibility: visible;
     transform: translate(-50%, -50%) scale(1);
 
 }
 
 
-
-.dashboard .create-school-menu .preview{
+.dashboard .create-school-menu .preview {
     width: 100px;
     overflow: hidden;
     object-fit: cover;
     height: 100px;
 }
 
-.dashboard .create-school-menu input[type="file"]{
+.dashboard .create-school-menu input[type="file"] {
     background: transparent;
     border-radius: 0px;
     position: absolute;
@@ -218,7 +326,7 @@
     cursor: pointer;
 }
 
-.dashboard .create-school-menu input[type="file"]::before{
+.dashboard .create-school-menu input[type="file"]::before {
     position: absolute;
     top: 0;
     left: 0;
@@ -240,12 +348,12 @@
     transition: 0.2s;
 }
 
-.dashboard .create-school-menu input[type="file"]:hover::before{
+.dashboard .create-school-menu input[type="file"]:hover::before {
     background: rgba(0, 0, 0, 0.2);
 }
 
 
-.dashboard .create-school-menu .preview-container{
+.dashboard .create-school-menu .preview-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -259,7 +367,7 @@
 }
 
 
-.dashboard .create-school-menu form{
+.dashboard .create-school-menu form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -268,7 +376,7 @@
     width: 100%;
 }
 
-.dashboard .create-school-menu input{
+.dashboard .create-school-menu input {
     border-radius: 50px;
     border: none;
     background: var(--secondary-grey);
@@ -278,11 +386,6 @@
     color: var(--dark-blue);
     width: calc(100% - 100px);
 }
-
-
-
-
-
 
 
 .dashboard nav {
@@ -300,8 +403,7 @@
 }
 
 
-
-.dashboard .school-button{
+.dashboard .school-button {
     background: var(--main-white);
     border: none;
     padding: 0 10px;
@@ -312,34 +414,35 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    box-sizing: border-box;
+    width: 100%;
     gap: 10px;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 10px;
 }
 
 
-.dashboard .school-button:hover{
+.dashboard .school-button:hover {
     background: var(--tertiary-white);
     color: var(--main-blue);
 }
 
-.dashboard .create-school button{
-    background : var(--main-blue);
+.dashboard .create-school button {
+    background: var(--main-blue);
 }
 
 
-.dashboard .school-button .school-button-icon{
-    width:20px;
-    height:20px;
-    background-size:cover;
-    background-position:center;
+.dashboard .school-button .school-button-icon {
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    background-position: center;
     border-radius: 50px;
     box-shadow: rgba(0, 0, 0, 0.09) 0px 0px 10px;
 
 }
 
 
-
-.dashboard .overlay{
+.dashboard .overlay {
     position: fixed;
     top: 0;
     right: 0;
@@ -352,9 +455,9 @@
     transition: 0.5s;
 }
 
-.dashboard .overlay.visible{
+.dashboard .overlay.visible {
     visibility: visible;
-    opacity:1;
+    opacity: 1;
 }
 
 
@@ -383,11 +486,12 @@
     background-repeat: no-repeat;
     color: var(--main-grey);
 }
+
 .dashboard .nav-wrapper button:hover {
-    color:var(--main-blue);
+    color: var(--main-blue);
 }
 
-.dashboard nav button{
+.dashboard nav button {
     background: var(--main-white);
 }
 

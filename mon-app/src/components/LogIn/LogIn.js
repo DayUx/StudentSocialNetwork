@@ -9,12 +9,9 @@ export default function LogIn() {
 
     useEffect(() => {
         if (user){
-
             navigate('/');
-
         }
     }, []);
-
 
     const [fields, setFields] = useState({ // <-- create field state
         email: '', password: '',
@@ -47,7 +44,7 @@ export default function LogIn() {
             ).then(res => {
                 console.log(res);
                 if (res.data.status === true) {
-                    localStorage.setItem('user', JSON.stringify(res.data.user));
+                    localStorage.setItem('user', res.data.user);
                     console.log(res.data.user);
                     navigate('/');
                 } else {

@@ -7,7 +7,6 @@ export function AuthProvider ({ children }) {
 
     const handleLogin = (user) => {
         localStorage.setItem('user', JSON.stringify(user));
-
         setUser(user);
     };
 

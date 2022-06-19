@@ -21,7 +21,6 @@ const schoolSchema = new mongoose.Schema({
       },
       ville: {
         type: 'string',
-        required: true
       },
       messages: [{
           

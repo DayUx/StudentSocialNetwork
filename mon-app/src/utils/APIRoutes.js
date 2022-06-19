@@ -5,3 +5,6 @@ export const userProfileRoute = host + '/userProfile';
 export const getSchoolsOfUserRoute = host + '/getSchoolsOfUser';
 export const getMessagesRoute = host + '/getMessages';
 export const getSchoolsRoute = host + '/getSchools';
+export const createSchoolRoute = host + '/createSchool';
+export const joinSchoolRoute = host + '/joinSchool';
+export const quitSchoolRoute = host + '/quitSchool';

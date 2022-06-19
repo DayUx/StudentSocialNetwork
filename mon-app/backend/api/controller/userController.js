@@ -1,5 +1,6 @@
 const Users = require("../model/userModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const mongoose = require('mongoose');
 
@@ -21,10 +22,20 @@ module.exports.register = async (req, res, next) => {
             second_name: second_name,
             email: email,
             password: hashedPassword,
+            profile_img: "",
         });
         delete user.password;
+        const token = jwt.sign({
+            id: user._id,
+            email: user.email,
+            first_name: user.first_name,
+            second_name: user.second_name,
+            profile_img: user.profile_img,
 
-        return res.json({status : true, user: user});
+        }, process.env.JWT_SECRET, {expiresIn: '3h'});
+
+
+        return res.json({status : true, user: token});
     }catch (e){
         next(e);
     }
@@ -49,7 +60,16 @@ module.exports.login = async (req,res, next) =>{
             });
         }
         delete user.password;
-        return res.json({status : true, user: user});
+        const token = jwt.sign({
+            id: user._id,
+            email: user.email,
+            first_name: user.first_name,
+            second_name: user.second_name,
+            profile_img: user.profile_img,
+
+        }, process.env.JWT_SECRET, {expiresIn: '3h'});
+
+        return res.json({status : true, user: token});
     }catch (e){
         next(e);
     }
