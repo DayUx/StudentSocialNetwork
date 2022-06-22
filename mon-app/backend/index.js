@@ -1,9 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const login = require('./api/login');
-const register = require('./api/register');
-const index = require('./api/index');
 const userRoutes = require('./api/routes/userRoutes');
 const socket = require("socket.io");
 const {hasAccess} = require("./api/controller/schoolController");
@@ -16,14 +13,7 @@ require('dotenv').config();
 
 app.use(cors());
 app.use(express.json());
-
-
 app.use(bodyParser.json({limit: '5mb'}));
-
-
-
-
-
 app.use('/', userRoutes);
 
 mongoose.connect(process.env.DB_URI, {
@@ -77,10 +67,9 @@ io.on("connection", (socket) => {
             console.log(data);
             if (hasAccess(decoded.id, data.to)) {
                 console.log("User has access to thissqd");
-                socket.to(data.to).emit("msg-receive", {user_id: decoded.id, msg: data.msg,timestamp:Date.now()});
+                socket.to(data.to).emit("msg-receive", {user_id: decoded.id, msg: data.msg, timestamp: Date.now()});
             }
-        }
-        catch (e) {
+        } catch (e) {
             console.log(e);
         }
     });

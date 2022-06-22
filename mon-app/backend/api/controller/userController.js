@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const mongoose = require('mongoose');
 module.exports.register = async (req, res, next) => {
     try {
-        const {first_name, second_name, email, password} = req.body;
+        const {first_name, second_name, email, password,profile_img} = req.body;
         const mailCheck = await Users.findOne({email: email});
         if (mailCheck) {
             return res.json({
@@ -18,7 +18,7 @@ module.exports.register = async (req, res, next) => {
             second_name: second_name,
             email: email,
             password: hashedPassword,
-            profile_img: "",
+            profile_img: profile_img,
         });
         delete user.password;
         delete user.profile_img;

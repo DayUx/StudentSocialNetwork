@@ -2,6 +2,7 @@ import React, {useState,useContext, useEffect} from 'react';
 import {loginRoute} from "../../utils/APIRoutes";
 import {useNavigate} from 'react-router-dom';
 import {AuthContext} from "../AuthProvider";
+import {toast, ToastContainer} from "react-toastify";
 
 export default function LogIn() {
     const navigate = useNavigate();
@@ -30,6 +31,14 @@ export default function LogIn() {
 
     const submitHandler = (e) => {
         e.preventDefault();
+
+
+        if (fields.email.length ==0 || fields.password.length ==0) {
+            toast.error("Please fill all the fields");
+            return;
+        }
+
+
         console.log(fields);
         fetch(loginRoute, {
             method: 'POST',
@@ -58,15 +67,16 @@ export default function LogIn() {
         <div className="logo">study.io</div>
         <form onSubmit={submitHandler} className="login-register-form">
             <h1>Log In</h1>
-            <input required placeholder="Email" type="email" name="email" onChange={changeHandler}
+            <input  placeholder="Email" type="email" name="email" onChange={changeHandler}
                    value={fields.email}/>
-            <input required placeholder="Password" name="password" type="password" onChange={changeHandler}
+            <input  placeholder="Password" name="password" type="password" onChange={changeHandler}
                    value={fields.password}/>
             <input className="btn" value="Sign In" type="submit"/>
         </form>
-        <div>
+        <div className={"register-div"}>
             <h1>New here ?</h1>
             <button onClick={redirection}> Register</button>
         </div>
+        <ToastContainer/>
     </div>);
 }

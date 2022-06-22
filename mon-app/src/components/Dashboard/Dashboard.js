@@ -11,6 +11,7 @@ import {disconnect} from "mongoose";
 import Chat from "../Chat/Chat";
 
 import {io} from "socket.io-client";
+import UserProfile from "../UserProfile/UserProfile";
 
 export default function Dashboard() {
 
@@ -25,6 +26,7 @@ export default function Dashboard() {
     const [selectedSchool, setSelectedSchool] = useState({});
     const [schoolMenu, setSchoolMenu] = useState(false);
     const [imageProfile, setImageProfile] = useState('');
+    const [modifyProfile, setModifyProfile] = useState(false);
 
     const [schoolFields, setSchoolFields] = useState({
         name: '', description: '',
@@ -248,6 +250,7 @@ export default function Dashboard() {
                         onClick={() => {
 
                             setSelectedSchool(school);
+                            setModifyProfile(false);
                         }}
 
                         style={{
@@ -258,29 +261,38 @@ export default function Dashboard() {
                 <button onClick={toggleClass}><FontAwesomeIcon icon={faPlus}/></button>
             </div>
             <button className={"my-profile-button"} onClick={() => {
-                navigate("/userProfile")
+                setModifyProfile(true);
             }} style={{
                 backgroundImage: "url(" + imageProfile + ")",
             }}>
             </button>
         </nav>
         <div className="school-page">
-            {selectedSchool._id ? <div className="school-page-header">
-                <div className={"school-page-title"}>
-                    <h1>
-                        {selectedSchool.nom}
-                    </h1>
-                    <p>
-                        {selectedSchool.description}
-                    </p>
-                </div>
-                <button onClick={() => {
-                    setSchoolMenu(true);
-                    setOverlay(true);
-                }}><FontAwesomeIcon icon={faEllipsisV}/></button>
-            </div> : <h2>No school selected</h2>}
 
-            {selectedSchool._id ? <Chat school={selectedSchool} socket={socket} chatFunc={chatFunc}/> : null}
+            {modifyProfile ? <UserProfile/> : (
+                selectedSchool._id ? <div className="school-page-header">
+                        <div className={"school-page-title"}>
+                            <h1>
+                                {selectedSchool.nom}
+                            </h1>
+                            <p>
+                                {selectedSchool.description}
+                            </p>
+                        </div>
+                        <button onClick={() => {
+                            setSchoolMenu(true);
+                            setOverlay(true);
+                        }}><FontAwesomeIcon icon={faEllipsisV}/></button>
+                    </div> : <h2>No school selected</h2>)
+            }
+            {modifyProfile?undefined:(selectedSchool._id ? <Chat school={selectedSchool} socket={socket} chatFunc={chatFunc}/> : null)}
+
+
+
+
+
+
+
 
 
         </div>

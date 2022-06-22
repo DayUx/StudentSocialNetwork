@@ -9,8 +9,6 @@ export default function UserProfile() {
     const [imageProfile, setImageProfile] = useState();
     const [user, setUser] = useState();
 
-
-
     const [fields, setFields] = useState({
         email: "",
         password: "",
