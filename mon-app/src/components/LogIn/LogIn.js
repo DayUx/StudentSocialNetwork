@@ -5,10 +5,11 @@ import {AuthContext} from "../AuthProvider";
 
 export default function LogIn() {
     const navigate = useNavigate();
-    const {user} = useContext(AuthContext);
+    //const {user} = useContext(AuthContext);
 
     useEffect(() => {
-        if (user){
+        if (localStorage.getItem('user')) {
+            console.log("user is logged in");
             navigate('/');
         }
     }, []);

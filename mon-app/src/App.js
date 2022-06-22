@@ -12,7 +12,6 @@ import {AuthProvider} from "./components/AuthProvider";
 
 function App() {
   return (
-      <AuthProvider>
           <div className="App">
               <BrowserRouter>
                   <Routes>
@@ -24,7 +23,6 @@ function App() {
               </BrowserRouter>
 
           </div>
-      </AuthProvider>
 
   );
 }

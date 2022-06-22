@@ -12,7 +12,6 @@ router.post('/', asyncMiddleware(async (req, res, next) => {
 
             register.registerUser(req.body.first_name, req.body.second_name, req.body.email, req.body.password);
             var j = login.verifyExistingUser(req.body.email, req.body.password);
-            console.log(j);
             res.send(j);
         }
     }

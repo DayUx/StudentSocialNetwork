@@ -14,8 +14,7 @@ function verifyExistingUser(mail,mdp)  {
             "password": 0,}
         }, function (err, result) {
             if (err) throw err;
-            console.log(result);
-            //console.log(result.name);
+
 
             tmp = result;
             // if (result.name != null) {

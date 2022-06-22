@@ -1,18 +1,21 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 
 import {
-    getSchoolsOfUserRoute, getSchoolsRoute, createSchoolRoute, joinSchoolRoute, quitSchoolRoute
+    getSchoolsOfUserRoute, getSchoolsRoute, createSchoolRoute, joinSchoolRoute, quitSchoolRoute, host, getUserRoute
 } from "../../utils/APIRoutes";
 import {AuthContext} from "../AuthProvider";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus, faEllipsisV, faUsers, faSignOutAlt, faTimes} from '@fortawesome/free-solid-svg-icons'
 import {useNavigate} from "react-router-dom";
+import {disconnect} from "mongoose";
+import Chat from "../Chat/Chat";
 
+import {io} from "socket.io-client";
 
 export default function Dashboard() {
 
     const navigate = useNavigate();
-    const {user} = useContext(AuthContext);
+    const user = localStorage.getItem('user');
     const [mySchools, setMySchools] = useState([]);
     const [schools, setSchools] = useState([]);
     const [active, setActive] = useState(false);
@@ -21,15 +24,28 @@ export default function Dashboard() {
     const [filter, setFilter] = useState('');
     const [selectedSchool, setSelectedSchool] = useState({});
     const [schoolMenu, setSchoolMenu] = useState(false);
-
+    const [imageProfile, setImageProfile] = useState('');
 
     const [schoolFields, setSchoolFields] = useState({
         name: '', description: '',
     });
-    let schoolsLoaded = false;
 
+    const chatFunc = useRef(null);
+    const socket = useRef();
+    let schoolsLoaded = false;
     const [overlay, setOverlay] = useState(false);
 
+    useEffect(() => {
+        if (selectedSchool._id) {
+            if (socket.current) {
+                socket.current.removeAllListeners("msg-receive");
+            }
+            socket.current = io(host);
+            socket.current.emit("joinRoom", {token: user, school_id: selectedSchool._id});
+            console.log(socket.current);
+            chatFunc.refresh();
+        }
+    }, [selectedSchool]);
 
     const createSchool = () => {
         setOverlay(true);
@@ -105,11 +121,31 @@ export default function Dashboard() {
     }
 
     useEffect(() => {
+        if (!localStorage.getItem('user')) {
+            navigate('/login');
+        }
 
-            loadSchools();
 
+        if (tokenIsExpired(user)) {
+            disconnect();
+        }
 
+        loadSchools();
+        setUserProfilePicture(wt_decode(user).id);
     }, []);
+
+    function disconnect() {
+        localStorage.removeItem('user');
+        navigate('/login');
+    }
+
+    function tokenIsExpired(token) {
+        var decoded = wt_decode(token);
+        var now = new Date();
+        var exp = new Date(decoded.exp * 1000);
+        return now > exp;
+    }
+
 
     const loadSchools = () => {
 
@@ -127,6 +163,7 @@ export default function Dashboard() {
                     'x-access-token': token, 'Content-Type': 'application/json'
                 }
             }).then(response => {
+
                 return response.json()
             }).then(data => ({
                 data: data
@@ -136,6 +173,8 @@ export default function Dashboard() {
             schoolsLoaded = false;
         }
     }
+
+
     const quitSchool = (id) => {
         fetch(quitSchoolRoute, {
             method: 'POST', headers: {
@@ -148,7 +187,6 @@ export default function Dashboard() {
         })).then(res => {
 
             if (res.data.status === true) {
-                console.log("test");
                 loadSchools();
                 getOtherSchools();
             }
@@ -185,6 +223,22 @@ export default function Dashboard() {
         }
     }
 
+    const setUserProfilePicture = (id) => {
+        fetch(getUserRoute, {
+            method: "POST", headers: {
+                "Content-Type": "application/json", "x-access-token": localStorage.getItem("user")
+            }, body: JSON.stringify({
+                id: id
+            })
+        }).then(response => response.json().then(data => ({
+            data: data, status: response.status
+        })).then(res => {
+            if (res.data.status) {
+                setImageProfile(res.data.user.profile_img);
+            }
+        }))
+
+    }
 
     return (<div className="dashboard">
         <nav>
@@ -192,8 +246,8 @@ export default function Dashboard() {
                 {mySchools.map((school, index) => {
                     return <button
                         onClick={() => {
+
                             setSelectedSchool(school);
-                            console.log(school);
                         }}
 
                         style={{
@@ -203,6 +257,12 @@ export default function Dashboard() {
                 })}
                 <button onClick={toggleClass}><FontAwesomeIcon icon={faPlus}/></button>
             </div>
+            <button className={"my-profile-button"} onClick={() => {
+                navigate("/userProfile")
+            }} style={{
+                backgroundImage: "url(" + imageProfile + ")",
+            }}>
+            </button>
         </nav>
         <div className="school-page">
             {selectedSchool._id ? <div className="school-page-header">
@@ -219,8 +279,10 @@ export default function Dashboard() {
                     setOverlay(true);
                 }}><FontAwesomeIcon icon={faEllipsisV}/></button>
             </div> : <h2>No school selected</h2>}
-            <div className="school-page-body">
-            </div>
+
+            {selectedSchool._id ? <Chat school={selectedSchool} socket={socket} chatFunc={chatFunc}/> : null}
+
+
         </div>
         <div className={active ? 'visible addSchoolMenu' : 'addSchoolMenu'}>
             <div className={"existing-schools"}>

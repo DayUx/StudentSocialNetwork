@@ -2,11 +2,7 @@
   $jsonSchema: {
     bsonType: 'object',
     required: [
-      'nom',
-      'description',
-      'ville',
-      'messages',
-      'users'
+      'nom'
     ],
     properties: {
       nom: {
@@ -20,6 +16,9 @@
       ville: {
         bsonType: 'string',
         description: 'must be a string and is required'
+      },
+      image: {
+        bsonType: 'string'
       },
       messages: {
         bsonType: 'array',
@@ -66,62 +65,32 @@
 }
 
 
-
 ,
 
-
-
 {
-  $jsonSchema: {
-    bsonType: 'object',
-    required: [
-      'name',
-      'mail',
-      'password',
-      'profile_img',
-      'school_name',
-      'job',
-      'old_age'
-    ],
-    properties: {
-      name: {
-        bsonType: 'string',
-        description: 'must be a string and is required'
-      },
-      mail: {
-        bsonType: 'string',
-        description: 'must be a string and is required'
-      },
-      password: {
-        bsonType: 'string',
-        description: 'must be an integer and is required'
-      },
-      profile_img: {
-        bsonType: 'string',
-        description: 'must be a string and is required'
-      },
-      school_name: {
-        bsonType: 'string',
-        description: 'must be a string and is required'
-      },
-      job: {
-        bsonType: 'string',
-        description: 'must be a string and is required'
-      },
-      old_age: {
-        bsonType: 'int',
-        description: 'must be an integer and is required'
-      }
-    }
-  }
+$jsonSchema: {
+bsonType: 'object',
+required: [
+'email',
+'password'
+],
+properties: {
+first_name: {
+bsonType: 'string'
+},
+second_name: {
+bsonType: 'string'
+},
+email: {
+bsonType: 'string'
+},
+password: {
+bsonType: 'string'
+},
+profile_img: {
+bsonType: 'string'
 }
-
-
-
-
-
-
-
-
-
+}
+}
+}
 

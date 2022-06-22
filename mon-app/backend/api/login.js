@@ -13,19 +13,16 @@ router.get('/', asyncMiddleware(async (req, res, next) => {
 }));
 
 router.post('/', asyncMiddleware(async (req, res, next) => {
-    //console.log(req.body);
-    //console.log(login)
+
     if (req.body.email && req.body.password) {
         const t = login.verifyExistingUser(req.body.email, req.body.password);
         if (t != null){
-            console.log(t);
 
             res.status(200).send(t);
             res.end();
         }
 
     } else {
-        console.log("error");
         res.send("error");
     }
     //res.render('login', {error: true, fromregister: false}); //Retour sur login avec une option indiquant une erreur

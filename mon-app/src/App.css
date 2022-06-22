@@ -216,7 +216,6 @@
     margin: 0;
     padding: 0;
     text-transform: uppercase;
-
 }
 
 .dashboard .school-page-header button {
@@ -237,6 +236,11 @@
 .dashboard .school-page {
     flex: 1;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
 }
 
 
@@ -250,10 +254,118 @@
     background: var(--main-white);
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    flex: 1;
     padding: 0 20px;
     box-sizing: border-box;
 }
+
+.dashboard .school-page-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    background: var(--main-white);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    flex: 1;
+    padding: 20px 20px;
+    box-sizing: border-box;
+    gap: 20px;
+}
+
+.dashboard .school-page-body .chat-messages {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y: scroll;
+    gap: 30px;
+}
+.dashboard .school-page-body .chat-messages .message{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    padding-left: 40px;
+    box-sizing: border-box;
+    gap: 10px;
+
+}
+.dashboard .message-user{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    gap: 10px;
+    position: relative;
+    color: var(--main-blue);
+    font-weight: bold;
+}
+.dashboard .message-user img {
+    width: 30px;
+    overflow: hidden;
+    object-fit: cover;
+    height:30px;
+    border-radius: 100px;
+    position: absolute;
+    left: -40px;
+    top: 0;
+
+}
+
+
+
+.dashboard .school-page-body .chat-messages .message-content{
+    text-align: left;
+}
+
+
+
+.dashboard .school-page-body .input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background: var(--quaternary-white);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.dashboard .school-page-body .input-container input {
+    border-radius: 50px;
+    border: none;
+    background: var(--quaternary-white);
+    padding: 5px 15px;
+    font-size: 17px;
+    outline: none;
+    width: calc(100% - 100px);
+}
+.dashboard .school-page-body .input-container button {
+    height: 50px;
+    width: 50px;
+    border: none;
+    background:transparent;
+    color: var(--main-grey);
+    font-size: 30px;
+    transform: inherit;
+}
+.dashboard .school-page-body .input-container button:hover {
+    color: var(--main-blue);
+}
+
+
 
 
 .dashboard .addSchoolMenu, .dashboard .create-school-menu{
@@ -305,14 +417,34 @@
 }
 
 
-.dashboard .create-school-menu .preview {
+.user-profile form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+}
+
+
+
+.user-profile form input{
+    border-radius: 50px;
+    border: none;
+    background: var(--quaternary-white);
+    padding: 5px 15px;
+    font-size: 17px;
+    outline: none;
+    width: calc(100% - 100px);
+}
+
+.preview-container .preview {
     width: 100px;
     overflow: hidden;
     object-fit: cover;
     height: 100px;
 }
 
-.dashboard .create-school-menu input[type="file"] {
+.preview-container input[type="file"] {
     background: transparent;
     border-radius: 0px;
     position: absolute;
@@ -326,7 +458,7 @@
     cursor: pointer;
 }
 
-.dashboard .create-school-menu input[type="file"]::before {
+.preview-container input[type="file"]::before {
     position: absolute;
     top: 0;
     left: 0;
@@ -348,12 +480,12 @@
     transition: 0.2s;
 }
 
-.dashboard .create-school-menu input[type="file"]:hover::before {
+.preview-container input[type="file"]:hover::before {
     background: rgba(0, 0, 0, 0.2);
 }
 
 
-.dashboard .create-school-menu .preview-container {
+ .preview-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -471,7 +603,7 @@
     box-sizing: border-box;
 }
 
-.dashboard .nav-wrapper button {
+.dashboard .nav-wrapper button,.dashboard .my-profile-button {
     border: none;
     padding: 5px;
     border-radius: 50px;
@@ -486,6 +618,10 @@
     background-repeat: no-repeat;
     color: var(--main-grey);
 }
+.dashboard .my-profile-button{
+    margin-bottom:10px ;
+}
+
 
 .dashboard .nav-wrapper button:hover {
     color: var(--main-blue);

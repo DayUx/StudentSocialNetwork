@@ -14,7 +14,6 @@ function getChatSchool(name)  {
             name: name
         }, function (err, result) {
             if (err) throw err;
-                console.log(result.name);
             if (result.messages != null) {
                 return result.messages;
             }
@@ -39,7 +38,6 @@ function getSchool(mail)  {
             mail: mail
         }, function (err, result) {
             if (err) throw err;
-                console.log(result.mail);
             if (result.mail != null) {
                 return result.mail;
             }

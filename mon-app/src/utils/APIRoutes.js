@@ -1,4 +1,4 @@
-const host = 'http://localhost:4000';
+export const host = 'http://localhost:4000';
 export const registerRoute = host + '/register';
 export const loginRoute = host + '/login';
 export const userProfileRoute = host + '/userProfile';
@@ -8,3 +8,6 @@ export const getSchoolsRoute = host + '/getSchools';
 export const createSchoolRoute = host + '/createSchool';
 export const joinSchoolRoute = host + '/joinSchool';
 export const quitSchoolRoute = host + '/quitSchool';
+export const sendMessageRoute = host + '/sendMessage';
+export const getUserRoute = host + '/getUser';
+export const updateUserRoute = host + '/updateUser';

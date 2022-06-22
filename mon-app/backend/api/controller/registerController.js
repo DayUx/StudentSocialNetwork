@@ -17,7 +17,6 @@ function registerUser(first_name, second_name, mail, password) {
             password: password,
         }, function (err, res) {
             if (err) throw err;
-            console.log("1 document inserted");
             db.close();
         });
 
