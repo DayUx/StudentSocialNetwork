@@ -14,6 +14,7 @@ export default function Chat({school, socket, chatFunc}) {
     const [arrivalMessage, setArrivalMessage] = useState();
     const [users, setUsers] = useState([]);
     const [gettingImages, setGettingImages] = useState([]);
+    const messagesEndRef = useRef(null)
 
     const user = localStorage.getItem("user");
 
@@ -23,6 +24,13 @@ export default function Chat({school, socket, chatFunc}) {
         return JSON.parse(window.atob(base64));
     };
 
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    }
+
+    useEffect(() => {
+        scrollToBottom()
+    }, [messages]);
 
     const getUserProfilePicture = (id) => {
         if (gettingImages[id]) {
@@ -57,11 +65,8 @@ export default function Chat({school, socket, chatFunc}) {
 
     useEffect(() => {
 
-
-
-
         chatFunc.refresh = () => {
-
+            setMessages([]);
             fetch(getMessagesRoute, {
                 method: "POST", headers: {
                     "Content-Type": "application/json", "x-access-token": localStorage.getItem("user")
@@ -174,6 +179,8 @@ export default function Chat({school, socket, chatFunc}) {
                         <div className={"message-content"}>{message.message}</div>
                     </div>
                 })}
+                <div ref={messagesEndRef} />
+
             </div>
 
             <form className="input-container" onSubmit={(event) => sendChat(event)}>
