@@ -19,9 +19,7 @@ const schoolSchema = new mongoose.Schema({
         type: 'string',
         required: true
       },
-      ville: {
-        type: 'string',
-      },
+
       messages: [{
           
             date: {

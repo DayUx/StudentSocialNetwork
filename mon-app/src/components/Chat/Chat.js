@@ -13,6 +13,7 @@ export default function Chat({school, socket, chatFunc}) {
     const scrollRef = useRef();
     const [arrivalMessage, setArrivalMessage] = useState();
     const [users, setUsers] = useState([]);
+    const [gettingImages, setGettingImages] = useState([]);
 
     const user = localStorage.getItem("user");
 
@@ -24,9 +25,16 @@ export default function Chat({school, socket, chatFunc}) {
 
 
     const getUserProfilePicture = (id) => {
+        if (gettingImages[id]) {
+            return;
+        }
         if (users[id]) {
             return users[id].profile_img;
         } else {
+            let t = gettingImages;
+            t[id] = true;
+            setGettingImages(t);
+
             fetch(getUserRoute, {
                 method: "POST", headers: {
                     "Content-Type": "application/json", "x-access-token": localStorage.getItem("user")
@@ -38,7 +46,8 @@ export default function Chat({school, socket, chatFunc}) {
             })).then(res => {
                 if (res.data.status) {
                     setUsers({...users, [id]: res.data.user});
-
+                    t[id] = false;
+                    setGettingImages(t);
                     return res.data.user.profile_img;
                 }
             }))
@@ -62,6 +71,7 @@ export default function Chat({school, socket, chatFunc}) {
             }).then(response => response.json().then(data => ({
                 data: data, status: response.status
             })).then(res => {
+                console.log(res);
                 if (res.data.status) {
                     setMessages(res.data.messages);
                 }
