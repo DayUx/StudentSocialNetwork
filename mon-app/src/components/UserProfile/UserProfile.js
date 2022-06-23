@@ -3,6 +3,7 @@ import {getUserRoute, updateUserRoute} from "../../utils/APIRoutes";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {useNavigate} from "react-router-dom";
+import Disconnect from "../Disconnect/Disconnect";
 
 export default function UserProfile() {
     const [selectedFile, setSelectedFile] = useState();
@@ -166,6 +167,10 @@ const navigate = useNavigate();
                    value={fields.confirm_password} onChange={changeHandler}/>
             <button type='submit'>Save changes</button>
         </form>
+    <div className={"disconnect-div"}>
+        <Disconnect/>
+    </div>
+
     </div>)
 
 }

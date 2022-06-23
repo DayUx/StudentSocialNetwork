@@ -87,10 +87,8 @@ module.exports.quitSchool = async (req, res, next) => {
         const school = await School.findById(id_school);
         if (!school) {
             return res.json({status: false, message: "School not found"});
-
         } else if (!school.users.find(user => user.user_id === userJson.id)) {
             return res.json({status: false, message: "You are not in this school"});
-
         } else {
             school.users = school.users.filter(user => user.user_id !== userJson.id);
             await school.save();

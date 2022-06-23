@@ -42,7 +42,6 @@ export default function Chat({school, socket, chatFunc}) {
             let t = gettingImages;
             t[id] = true;
             setGettingImages(t);
-
             fetch(getUserRoute, {
                 method: "POST", headers: {
                     "Content-Type": "application/json", "x-access-token": localStorage.getItem("user")

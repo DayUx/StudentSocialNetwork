@@ -27,7 +27,6 @@ export default function Dashboard() {
     const [schoolMenu, setSchoolMenu] = useState(false);
     const [imageProfile, setImageProfile] = useState('');
     const [modifyProfile, setModifyProfile] = useState(false);
-
     const [schoolFields, setSchoolFields] = useState({
         name: '', description: '',
     });
@@ -150,7 +149,6 @@ export default function Dashboard() {
 
 
     const loadSchools = () => {
-
         let token = user;
         const userJson = wt_decode(token);
         setMySchools([]);
