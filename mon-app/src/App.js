@@ -8,9 +8,18 @@ import UserProfile from "./components/UserProfile/UserProfile";
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {AuthProvider} from "./components/AuthProvider";
+import {useEffect} from "react";
 
 
 function App() {
+    useEffect(() => {
+        if (localStorage.getItem("theme")) {
+            document.documentElement.setAttribute("data-theme", localStorage.getItem("theme"));
+        } else {
+            document.documentElement.setAttribute("data-theme", "light");
+        }
+    }, []);
+
   return (
           <div className="App">
               <BrowserRouter>

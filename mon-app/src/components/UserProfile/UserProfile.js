@@ -4,6 +4,7 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {useNavigate} from "react-router-dom";
 import Disconnect from "../Disconnect/Disconnect";
+import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 
 export default function UserProfile() {
     const [selectedFile, setSelectedFile] = useState();
@@ -168,6 +169,7 @@ const navigate = useNavigate();
             <button type='submit'>Save changes</button>
         </form>
     <div className={"disconnect-div"}>
+        <ThemeSwitch/>
         <Disconnect/>
     </div>
 

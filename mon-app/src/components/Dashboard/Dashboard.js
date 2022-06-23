@@ -176,6 +176,7 @@ export default function Dashboard() {
 
 
     const quitSchool = (id) => {
+        setSelectedSchool({});
         fetch(quitSchoolRoute, {
             method: 'POST', headers: {
                 'x-access-token': user, 'Content-Type': 'application/json'

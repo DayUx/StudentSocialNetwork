@@ -64,7 +64,7 @@ export default function LogIn() {
     };
 
     return (<div className="login-register-div">
-        <div className="logo">study.io</div>
+        <div className="logo"></div>
         <form onSubmit={submitHandler} className="login-register-form">
             <h1>Log In</h1>
             <input  placeholder="Email" type="email" name="email" onChange={changeHandler}
