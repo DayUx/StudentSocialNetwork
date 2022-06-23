@@ -52,6 +52,7 @@ export default function Chat({school, socket, chatFunc}) {
                 data: data, status: response.status
             })).then(res => {
                 if (res.data.status) {
+                    console.log(res.data.user);
                     setUsers({...users, [id]: res.data.user});
                     t[id] = false;
                     setGettingImages(t);
@@ -171,7 +172,8 @@ export default function Chat({school, socket, chatFunc}) {
                                 {users[message.user_id]?.first_name}
                                 &nbsp;
                                 {users[message.user_id]?.second_name}
-                                <div className={"message-date"}>{users[message.user_id]?.date}</div>
+                                &nbsp;
+                                <span style={{fontSize:"10px",opacity:0.8}}> {new Date(message?.date * 1).toLocaleString()}</span>
                             </div>
                         </div>
 

@@ -40,13 +40,12 @@ module.exports.getUser = async (req, res, next) => {
     try {
         const token = req.headers['x-access-token'];
         const userJson = await jwt.verify(token, process.env.JWT_SECRET);
-        const user = await Users.findById(req.body.id);
+        const user = await Users.findById(req.body.id,{password:0,email:0});
         console.log(req.body.id);
         if(!user){
             return res.json({status : false, message: "User not found"});
         }
-        delete user.password;
-        delete user.email;
+
         return res.json({status : true, user: user});
     }catch (e){
         next(e);
