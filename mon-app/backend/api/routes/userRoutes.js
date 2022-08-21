@@ -15,4 +15,7 @@ router.post("/updateUser", updateUser)
 router.post("/ping", (req, res) => {
     res.send("pong");
 });
+router.post("/", (req, res) => {
+    res.send("Hello World");
+});
 module.exports = router;
