@@ -12,4 +12,7 @@ router.post("/quitSchool", quitSchool)
 router.post("/sendMessage",sendMessage)
 router.post("/getUser", getUser)
 router.post("/updateUser", updateUser)
+router.post("/ping", (req, res) => {
+    res.send("pong");
+});
 module.exports = router;
