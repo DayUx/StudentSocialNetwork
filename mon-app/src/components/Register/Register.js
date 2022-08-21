@@ -1,7 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {registerRoute} from '../../utils/APIRoutes';
 import {useNavigate} from 'react-router-dom';
-import {AuthContext} from "../AuthProvider";
 import {ToastContainer,toast} from "react-toastify";
 
 
@@ -121,7 +120,7 @@ export default function Register() {
     }
 
     return (<div className="login-register-div">
-            <div className="logo">study.io</div>
+            <div className="logo"></div>
             <form onSubmit={submitHandler} className="login-register-form">
                 <h1>Register</h1>
                 <div className={"preview-container"}>

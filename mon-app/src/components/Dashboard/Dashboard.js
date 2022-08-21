@@ -1,13 +1,11 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 import {
     getSchoolsOfUserRoute, getSchoolsRoute, createSchoolRoute, joinSchoolRoute, quitSchoolRoute, host, getUserRoute
 } from "../../utils/APIRoutes";
-import {AuthContext} from "../AuthProvider";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus, faEllipsisV, faUsers, faSignOutAlt, faTimes} from '@fortawesome/free-solid-svg-icons'
 import {useNavigate} from "react-router-dom";
-import {disconnect} from "mongoose";
 import Chat from "../Chat/Chat";
 
 import {io} from "socket.io-client";
@@ -329,7 +327,6 @@ export default function Dashboard() {
 
         <div className={schoolMenu ? "school-menu visible" : "school-menu"}>
             <button onClick={closeEverything}><FontAwesomeIcon icon={faTimes}/></button>
-            <button><FontAwesomeIcon icon={faUsers}/></button>
             <button onClick={() => {
                 quitSchool(selectedSchool._id);
                 closeEverything();

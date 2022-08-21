@@ -8,10 +8,10 @@
     ],
     properties: {
       nom: {
-        bsonType: 'string',
+        bsonType: 'string'
       },
       description: {
-        bsonType: 'string',
+        bsonType: 'string'
       },
       image: {
         bsonType: 'string'
@@ -27,13 +27,13 @@
           ],
           properties: {
             date: {
-              bsonType: 'string',
+              bsonType: 'string'
             },
             message: {
-              bsonType: 'string',
+              bsonType: 'string'
             },
             user_id: {
-              bsonType: 'string',
+              bsonType: 'string'
             }
           }
         }
@@ -47,7 +47,7 @@
           ],
           properties: {
             user_id: {
-              bsonType: 'string',
+              bsonType: 'string'
             }
           }
         }
@@ -57,32 +57,35 @@
 }
 
 
-,
+
 
 {
-$jsonSchema: {
-bsonType: 'object',
-required: [
-'email',
-'password'
-],
-properties: {
-first_name: {
-bsonType: 'string'
-},
-second_name: {
-bsonType: 'string'
-},
-email: {
-bsonType: 'string'
-},
-password: {
-bsonType: 'string'
-},
-profile_img: {
-bsonType: 'string'
-}
-}
-}
+  $jsonSchema: {
+    bsonType: 'object',
+    required: [
+      'email',
+      'password',
+      'first_name',
+      'second_name',
+      'profile_img'
+    ],
+    properties: {
+      first_name: {
+        bsonType: 'string'
+      },
+      second_name: {
+        bsonType: 'string'
+      },
+      email: {
+        bsonType: 'string'
+      },
+      password: {
+        bsonType: 'string'
+      },
+      profile_img: {
+        bsonType: 'string'
+      }
+    }
+  }
 }
 
