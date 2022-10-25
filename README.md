@@ -1,6 +1,3 @@
 # StudentSocialNetwork
-Projet m3106
-
-Plusieurs table :
-User (id, name, mdp, profile_img, etablissement, job, age)
-Message (id, date, message, id_user(@User.id))
+## Réseau social en react réalisé lors de mon DUT
+##Page de connexion accessible [ici](https://skool.paulcoignac.me/) (La base de donnée n'est pas lancée, seul page de connexion et d'inscription sont accessibles)
